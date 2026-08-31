@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agustín Vásquez — VasKas Systems | Desarrollador de Software</title>
+  
+  <!-- Prevenir FOUC (Flash of Unstyled Content): Detección instantánea de tema antes de renderizar -->
+  <script>
+    (function() {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Favicon: Monograma VasKas Systems -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="alternate icon" href="assets/favicon.svg" />
+
+  <!-- Metadatos SEO y Redes Sociales -->
+  <meta name="description" content="Portafolio de Agustín Vásquez. Estudiante de Ingeniería en Informática y Analista Programador en Duoc UC, fundador de VasKas Systems. Especialista en Java, Python, Spring Boot, Microservicios, MySQL, PL/SQL, Next.js 15, Tailwind y Bootstrap." />
+  <meta name="author" content="Agustín Vásquez (VasKas Systems)" />
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Agustín Vásquez — VasKas Systems" />
+  <meta property="og:description" content="Estudio Ingeniería en Informática en Duoc UC y desarrollo soluciones de software a través de VasKas Systems." />
+  <meta property="og:url" content="https://nopueo1.github.io/Portafolio-web/" />
+
+  <!-- Optimización DNS & Preconnect de Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Hoja de Estilos Personalizada -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body id="top" class="min-h-screen bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 selection:bg-zinc-200 dark:selection:bg-zinc-800 transition-colors duration-200">
+
+  <!-- Cuadrícula sutil de fondo -->
+  <div class="fixed inset-0 pointer-events-none bg-subtle-grid z-0"></div>
+
+  <!-- Barra de Navegación Superior -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 transition-all">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Identidad: Agustín Vásquez / VasKas Systems -->
+      <a href="#top" id="nav-brand-link" class="flex items-center gap-3 group">
+        <div class="relative w-8 h-8 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-black flex items-center justify-center shrink-0">
+          <img 
+            src="assets/images/vaskas_vk.png" 
+            alt="VasKas Logo" 
+            width="32" 
+            height="32" 
+            loading="eager" 
+            decoding="async"
+            class="w-full h-full object-cover scale-[1.6] transition-transform duration-300" 
+          />
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="text-sm font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+              Agustín Vásquez
+            </span>
+            <span class="text-[10px] font-mono text-zinc-400 bg-zinc-100 dark:bg-zinc-800/80 px-1.5 py-0.2 rounded">VasKas</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Enlaces de Sección -->
+      <nav class="hidden sm:flex items-center gap-6 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+        <a href="#proyectos" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Proyectos</a>
+        <a href="#stack" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Stack Técnico</a>
+        <a href="#trayectoria" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Trayectoria</a>
+        <a href="#contacto" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Botones de Utilidad y Redes Sociales -->
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        <!-- Selector de Modo Oscuro / Claro -->
+        <button id="theme-toggle" type="button" class="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" aria-label="Cambiar tema">
+          <svg class="w-4 h-4 hidden dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="w-4 h-4 block dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+
+        <!-- Instagram Oficial -->
+        <a href="https://www.instagram.com/vaskas.systems" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-zinc-500 hover:text-pink-600 dark:text-zinc-400 dark:hover:text-pink-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" title="Instagram (@vaskas.systems)" aria-label="Instagram">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+
+        <!-- LinkedIn Oficial -->
+        <a href="https://www.linkedin.com/in/agustin-vasquez-ti/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-zinc-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" title="LinkedIn" aria-label="LinkedIn">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </a>
+
+        <!-- GitHub Oficial -->
+        <a href="https://github.com/NoPueo1" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 transition-colors" title="GitHub (@NoPueo1)" aria-label="GitHub">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col gap-20 sm:gap-24 overflow-x-hidden">
+
+    <!-- ========================================================================= -->
+    <!-- 1. SECCIÓN PRINCIPAL (HERO): IDENTIDAD, PRESENTACIÓN Y CONTACTO RÁPIDO    -->
+    <!-- ========================================================================= -->
+    <section id="inicio" class="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center items-start gap-6 pt-16 pb-12">
+      
+      <!-- Fondo: Marca VasKas y destello luminoso -->
+      <div class="hero-vaskas-bg-container">
+        <div class="hero-white-flare"></div>
+        <span class="hero-vaskas-text">VasKas</span>
+      </div>
+
+      <!-- Contenido en primer plano -->
+      <div class="relative z-10 space-y-6 max-w-2xl">
+        
+        <!-- Encabezado sutil -->
+        <div class="flex items-center gap-2 font-mono text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+          <span class="font-semibold text-zinc-800 dark:text-zinc-200">VasKas Systems</span>
+          <span>&bull;</span>
+          <span>Concepción, Chile</span>
+        </div>
+
+        <!-- Título Principal -->
+        <div class="space-y-2">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.08]">
+            Agustín Vásquez
+          </h1>
+          <h2 class="text-base sm:text-xl md:text-2xl font-medium text-zinc-500 dark:text-zinc-400 tracking-tight">
+            Desarrollador de Software &mdash; <strong class="font-semibold text-zinc-800 dark:text-zinc-200">Backend &amp; Microservicios</strong>
+          </h2>
+        </div>
+
+        <!-- Biografía Profesional -->
+        <div class="space-y-3 text-sm sm:text-base md:text-[1.0625rem] text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
+          <p>
+            Estudio <strong class="font-semibold text-zinc-900 dark:text-zinc-200">Ingeniería en Informática en Duoc UC</strong> (con salida intermedia de Analista Programador) y desarrollo soluciones de software a través de <strong class="font-semibold text-zinc-900 dark:text-zinc-200">VasKas Systems</strong>.
+          </p>
+          <p>
+            Mi fuerte es el backend: desarrollo arquitecturas desacopladas en <strong class="font-semibold text-zinc-900 dark:text-zinc-200">microservicios con Java y Spring Boot</strong> (Spring Cloud Gateway, OpenFeign), manejo en <strong class="text-zinc-800 dark:text-zinc-200">Python</strong> y bases de datos relacionales en <strong class="text-zinc-800 dark:text-zinc-200">MySQL</strong> y <strong class="text-zinc-800 dark:text-zinc-200">Oracle (PL/SQL)</strong> con modelado MER/DER. En frontend construyo aplicaciones con <strong class="text-zinc-800 dark:text-zinc-200">Next.js 15, TypeScript, Tailwind CSS y Bootstrap</strong> para producción.
+          </p>
+        </div>
+
+        <!-- Filosofía de Desarrollo -->
+        <blockquote class="border-l-2 border-zinc-300 dark:border-zinc-700 pl-4 py-1 text-xs sm:text-sm md:text-base italic text-zinc-500 dark:text-zinc-400 max-w-xl">
+          &ldquo;Prefiero entender bien la lógica de negocio y el modelo de datos antes de tirar código sin sentido.&rdquo;
+        </blockquote>
+
+        <!-- Fila de Acciones: Descarga de CV y Enlaces Rápidos -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-2 w-full">
+          
+          <!-- Descargar CV -->
+          <a href="assets/docs/CV_Agustin_Vasquez.pdf" target="_blank" download="CV_Agustin_Vasquez.pdf" class="btn-solid-glass">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+            <span>Descargar CV</span>
+          </a>
+
+          <!-- Instagram Oficial -->
+          <a href="https://www.instagram.com/vaskas.systems" target="_blank" rel="noopener noreferrer" class="btn-glass group/btn">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#insta-grad)" stroke-width="2.2"/>
+              <circle cx="12" cy="12" r="4" stroke="url(#insta-grad)" stroke-width="2.2"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#e1306c"/>
+              <defs>
+                <linearGradient id="insta-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#f09433"/>
+                  <stop offset="0.25" stop-color="#e6683c"/>
+                  <stop offset="0.5" border-color="#dc2743"/>
+                  <stop offset="0.75" stop-color="#cc2366"/>
+                  <stop offset="1" stop-color="#bc1888"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span>@vaskas.systems</span>
+            <svg class="w-2.5 h-2.5 text-zinc-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+
+          <!-- GitHub Oficial -->
+          <a href="https://github.com/NoPueo1" target="_blank" rel="noopener noreferrer" class="btn-glass group/btn">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-900 dark:text-white shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            <span>GitHub</span>
+            <svg class="w-2.5 h-2.5 text-zinc-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+
+          <!-- LinkedIn Oficial -->
+          <a href="https://www.linkedin.com/in/agustin-vasquez-ti/" target="_blank" rel="noopener noreferrer" class="btn-glass group/btn">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0a66c2] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            <span>LinkedIn</span>
+            <svg class="w-2.5 h-2.5 text-zinc-400 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+
+          <!-- Botón Rápido Copiar Email -->
+          <button id="quick-copy-email" type="button" class="btn-glass font-mono text-xs sm:text-sm shrink-0" title="Copiar correo">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copiar Email</span>
+          </button>
+          
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. PROYECTOS DESTACADOS & SOLUCIONES DE SOFTWARE                          -->
+    <!-- ========================================================================= -->
+    <section id="proyectos" class="scroll-mt-24 space-y-10 pt-4">
+      
+      <!-- Cabecera de Sección -->
+      <div class="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+          Proyectos &amp; Soluciones de Software
+        </h2>
+        <span class="text-xs font-mono text-zinc-400">
+          VasKas Systems &bull; @NoPueo1
+        </span>
+      </div>
+
+      <!-- Listado de Proyectos -->
+      <div class="space-y-12">
+
+        <!-- ================= PROYECTO 01: SATORI SUSHI ================= -->
+        <article class="surface-card p-5 sm:p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Columna Izquierda: Descripción Técnica -->
+            <div class="lg:col-span-7 space-y-4">
+              
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-medium text-teal-600 dark:text-teal-400">01 / Full Stack &amp; E-Commerce &bull; Solución VasKas</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">
+                  Satori Sushi &mdash; Plataforma de Delivery Comercial
+                </h3>
+                <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                  Desplegada en producción en Vercel con Next.js 15, TypeScript y Tailwind CSS
+                </p>
+              </div>
+
+              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Plataforma comercial desarrollada por <strong>VasKas Systems</strong> para el restaurante Satori Sushi (Quillón, Chile). Cuenta con catálogo interactivo por pestañas, filtrado dinámico en memoria y un carrito de compras reactivo que calcula el total y formatea automáticamente los pedidos hacia la API de WhatsApp del negocio.
+              </p>
+
+              <!-- Puntos Clave de Ingeniería -->
+              <ul class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-teal-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Catálogo dinámico por categorías con renderizado ultra-rápido</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-teal-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Flujo de checkout estructurado que automatiza la orden a WhatsApp</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-teal-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Optimizada para navegación en smartphones y métricas Core Web Vitals</span>
+                </li>
+              </ul>
+
+              <!-- Etiquetas de Tecnologías -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="badge-tag">Next.js 15</span>
+                <span class="badge-tag">TypeScript</span>
+                <span class="badge-tag">Tailwind CSS</span>
+                <span class="badge-tag">Framer Motion</span>
+                <span class="badge-tag">WhatsApp Flow</span>
+                <span class="badge-tag">Vercel</span>
+              </div>
+
+              <!-- Enlaces de Acción -->
+              <div class="flex items-center gap-3 pt-2">
+                <a href="https://satorisushi.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-solid-glass text-xs py-2 px-3.5">
+                  <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1 2-2h6"/></svg>
+                  <span>Visitar Web ↗</span>
+                </a>
+                <a href="https://github.com/NoPueo1/LandingPageSatori-" target="_blank" rel="noopener noreferrer" class="btn-glass text-xs py-2 px-3.5">
+                  <svg class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                  <span>Código</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Columna Derecha: Mockup de Smartphone Real con Safe Area -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+              <div class="phone-device">
+                <div class="phone-screen">
+                  
+                  <!-- Barra Superior Safe Area (El notch no tapa el contenido) -->
+                  <div class="phone-status-bar">
+                    <span>9:41</span>
+                    <div class="phone-dynamic-island">
+                      <div class="phone-camera-lens"></div>
+                    </div>
+                    <div class="flex items-center gap-1 text-white">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.23C2.89 16.48 2 14.34 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 2.34-.89 4.48-2.35 6.23l-.62-.62C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="4" y="9" width="12" height="6" rx="1"/><path d="M21 11v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                  </div>
+
+                  <!-- Contenedor del Iframe de la Demo en Vivo (Aislado con Sandbox y Lazy Loading) -->
+                  <div class="phone-iframe-container">
+                    <iframe 
+                      id="satori-frame"
+                      src="https://satorisushi.vercel.app" 
+                      title="Satori Sushi - Demo en Vercel"
+                      loading="lazy"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
+                      aria-label="Demo interactiva Satori Sushi">
+                    </iframe>
+                  </div>
+
+                  <!-- Base Inferior con Barra de Inicio -->
+                  <div class="phone-home-bar">
+                    <div class="phone-home-indicator"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- ================= PROYECTO 02: TOY STORY ================= -->
+        <article class="surface-card p-5 sm:p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Columna Izquierda: Descripción Técnica -->
+            <div class="lg:col-span-7 space-y-4">
+              
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-medium text-amber-600 dark:text-amber-400">02 / Web Interactiva &amp; UX</span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">
+                  Invitación Digital Interactiva &mdash; Toy Story
+                </h3>
+                <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                  Desplegada en GitHub Pages con JavaScript nativo ES6+, Audio API y Canvas
+                </p>
+              </div>
+
+              <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Aplicación web interactiva de 3 láminas estructuradas construida sin librerías pesadas. Diseñada con temporizador de cuenta regresiva en tiempo real en JavaScript nativo, reproducción musical con Web Audio API, sistema de partículas de confeti en HTML5 Canvas e integración con WhatsApp RSVP y Google Maps.
+              </p>
+
+              <!-- Puntos Clave de Ingeniería -->
+              <ul class="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Temporizador matemático en vivo sin dependencias externas</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Web Audio API con control interactivo de reproducción</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Georreferenciación con Google Maps y confirmación automatizada</span>
+                </li>
+              </ul>
+
+              <!-- Etiquetas de Tecnologías -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="badge-tag">HTML5 Semántico</span>
+                <span class="badge-tag">CSS3 Keyframes</span>
+                <span class="badge-tag">JavaScript ES6+</span>
+                <span class="badge-tag">Canvas Confetti</span>
+                <span class="badge-tag">Google Maps</span>
+                <span class="badge-tag">Audio API</span>
+              </div>
+
+              <!-- Enlaces de Acción -->
+              <div class="flex items-center gap-3 pt-2">
+                <a href="https://nopueo1.github.io/InvitacionToyStory/" target="_blank" rel="noopener noreferrer" class="btn-solid-glass text-xs py-2 px-3.5">
+                  <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1 2-2h6"/></svg>
+                  <span>Ver Demo ↗</span>
+                </a>
+                <a href="https://github.com/NoPueo1/InvitacionToyStory" target="_blank" rel="noopener noreferrer" class="btn-glass text-xs py-2 px-3.5">
+                  <svg class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                  <span>Código</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Columna Derecha: Mockup de Smartphone Real con Safe Area -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+              <div class="phone-device">
+                <div class="phone-screen">
+                  
+                  <!-- Barra Superior Safe Area (El notch no tapa el contenido) -->
+                  <div class="phone-status-bar">
+                    <span>9:41</span>
+                    <div class="phone-dynamic-island">
+                      <div class="phone-camera-lens"></div>
+                    </div>
+                    <div class="flex items-center gap-1 text-white">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.23C2.89 16.48 2 14.34 2 12 2 6.48 6.48 2 12 2s10 4.48 10 10c0 2.34-.89 4.48-2.35 6.23l-.62-.62C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="4" y="9" width="12" height="6" rx="1"/><path d="M21 11v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                  </div>
+
+                  <!-- Contenedor del Iframe de la Demo en Vivo (Aislado con Sandbox y Lazy Loading) -->
+                  <div class="phone-iframe-container">
+                    <iframe 
+                      id="toy-story-frame"
+                      src="https://nopueo1.github.io/InvitacionToyStory/" 
+                      title="Invitación Toy Story - Demo Real"
+                      loading="lazy"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation"
+                      aria-label="Demo interactiva Invitación Toy Story">
+                    </iframe>
+                  </div>
+
+                  <!-- Base Inferior con Barra de Inicio -->
+                  <div class="phone-home-bar">
+                    <div class="phone-home-indicator"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- ================= PROYECTO 03: MICROSERVICIOS CON CONSOLA DE CÓDIGO ================= -->
+        <article class="surface-card p-5 sm:p-8 space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-medium text-emerald-600 dark:text-emerald-400">03 / Backend &amp; Arquitectura Distribuida</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white mt-0.5">
+                Sistema de Cotización y Gestión en Microservicios
+              </h3>
+              <p class="text-xs font-mono text-zinc-500 dark:text-zinc-400 mt-0.5">
+                Ecosistema distribuido de 11 módulos con Spring Boot 3.2.5, OpenFeign y 10 bases de datos MySQL
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <a href="https://github.com/NoPueo1/sistema-cotizacion-microservicios" target="_blank" rel="noopener noreferrer" class="btn-glass text-xs py-1.5 px-3">
+                <svg class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                <span>Código</span>
+                <svg class="w-3 h-3 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+              <button type="button" class="open-arch-modal-btn btn-glass text-xs py-1.5 px-3">
+                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.9a2 2 0 0 1 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                <span>Ver Módulos</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Plataforma desacoplada para cotizaciones, inventario y facturación. Implementa un Gateway central (<code class="font-mono text-xs text-zinc-800 dark:text-zinc-200">ms-gateway:8090</code>), comunicación síncrona declarativa con <strong class="text-zinc-800 dark:text-zinc-200">OpenFeign</strong> entre servicios, 10 esquemas MySQL aislados bajo el patrón <strong class="text-zinc-800 dark:text-zinc-200">Database-per-Service</strong> y pruebas unitarias con JUnit 5 &amp; Mockito.
+          </p>
+
+          <!-- Consola Interactiva de Código con Pestañas y Controles de Ventana -->
+          <div class="compact-browser-frame shadow-xl">
+            <div class="flex items-center justify-between px-4 py-2.5 bg-[#121217] border-b border-zinc-800/80">
+              
+              <!-- Controles de Ventana y Pestañas -->
+              <div class="flex items-center gap-3 sm:gap-4 overflow-x-auto">
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/90 border border-[#e0443e]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/90 border border-[#dea123]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/90 border border-[#1aab29]"></span>
+                </div>
+                
+                <!-- Selector de Pestañas de Código -->
+                <div class="flex items-center gap-1">
+                  <button class="code-tab-btn active" data-tab="tab-feign">StockClient.java</button>
+                  <button class="code-tab-btn" data-tab="tab-gateway">GatewayRoutes.java</button>
+                  <button class="code-tab-btn" data-tab="tab-db">DatabasePerService.sql</button>
+                </div>
+              </div>
+
+              <!-- Estado de Ejecución -->
+              <span class="font-mono text-[10px] text-emerald-400 font-semibold tracking-wider shrink-0 hidden sm:inline">STATUS: 200 OK</span>
+            </div>
+            
+            <div class="p-4 sm:p-5 font-mono text-xs text-zinc-300 bg-[#0a0a0d] overflow-x-auto min-h-[140px]">
+              
+              <!-- Pestaña 1: Cliente Feign -->
+              <div id="tab-feign" class="code-tab-content block">
+                <pre class="text-[11px] leading-relaxed"><code class="text-zinc-400"><span class="text-purple-400">@FeignClient</span>(name = <span class="text-emerald-300">"ms-stock"</span>)
+<span class="text-blue-400">public interface</span> <span class="text-yellow-400">StockClient</span> {
+    <span class="text-purple-400">@GetMapping</span>(<span class="text-emerald-300">"/api/stock/equipo/{equipoId}"</span>)
+    StockDTO <span class="text-yellow-400">obtenerStockPorEquipo</span>(<span class="text-purple-400">@PathVariable</span>(<span class="text-emerald-300">"equipoId"</span>) Long equipoId);
+
+    <span class="text-purple-400">@PutMapping</span>(<span class="text-emerald-300">"/api/stock/descontar"</span>)
+    <span class="text-blue-400">void</span> <span class="text-yellow-400">descontarInventario</span>(<span class="text-purple-400">@RequestBody</span> DescuentoStockDTO dto);
+}</code></pre>
+              </div>
+
+              <!-- Pestaña 2: Rutas del Gateway -->
+              <div id="tab-gateway" class="code-tab-content hidden">
+                <pre class="text-[11px] leading-relaxed"><code class="text-zinc-400"><span class="text-purple-400">@Bean</span>
+<span class="text-blue-400">public</span> RouteLocator <span class="text-yellow-400">customRouteLocator</span>(RouteLocatorBuilder builder) {
+    <span class="text-blue-400">return</span> builder.routes()
+        .route(<span class="text-emerald-300">"ms-cotizador"</span>, r -> r.path(<span class="text-emerald-300">"/api/cotizaciones/**"</span>)
+            .uri(<span class="text-emerald-300">"http://localhost:8081"</span>))
+        .route(<span class="text-emerald-300">"ms-stock"</span>, r -> r.path(<span class="text-emerald-300">"/api/stock/**"</span>)
+            .uri(<span class="text-emerald-300">"http://localhost:8085"</span>))
+        .build();
+}</code></pre>
+              </div>
+
+              <!-- Pestaña 3: Esquemas Aislados de Base de Datos -->
+              <div id="tab-db" class="code-tab-content hidden">
+                <pre class="text-[11px] leading-relaxed"><code class="text-zinc-400"><span class="text-zinc-500">-- Patrón Database-per-Service: 10 Esquemas Aislados MySQL</span>
+<span class="text-purple-400">CREATE DATABASE</span> IF NOT EXISTS cotizador_db;
+<span class="text-purple-400">CREATE DATABASE</span> IF NOT EXISTS stock_db;
+<span class="text-purple-400">CREATE DATABASE</span> IF NOT EXISTS facturacion_db;
+<span class="text-purple-400">CREATE DATABASE</span> IF NOT EXISTS cliente_db;
+<span class="text-zinc-500">-- Cada microservicio gestiona su persistencia sin acoplamiento.</span></code></pre>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Etiquetas de Tecnologías -->
+          <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
+            <span class="badge-tag">Java</span>
+            <span class="badge-tag">Spring Boot 3</span>
+            <span class="badge-tag">Spring Cloud Gateway</span>
+            <span class="badge-tag">OpenFeign</span>
+            <span class="badge-tag">MySQL (10 DBs)</span>
+            <span class="badge-tag">Oracle PL/SQL</span>
+            <span class="badge-tag">Python</span>
+            <span class="badge-tag">JUnit 5 / Mockito</span>
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Otros Desarrollos y Repositorios -->
+      <div class="pt-4 space-y-3">
+        <h4 class="text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider">
+          Otros Desarrollos &amp; Repositorios
+        </h4>
+
+        <div class="divide-y divide-zinc-200 dark:divide-zinc-800/80 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden text-xs">
+          
+          <div class="p-3.5 flex items-center justify-between bg-zinc-50/50 dark:bg-[#121215]/50 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="font-mono font-semibold text-zinc-800 dark:text-zinc-200">alke-wallet</span>
+              <span class="text-zinc-500 hidden sm:inline">&mdash; Billetera digital interactiva y responsiva</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-[11px] text-zinc-400">HTML / Bootstrap / JS</span>
+              <a href="https://github.com/NoPueo1/alke-wallet" target="_blank" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white" aria-label="Repositorio alke-wallet">
+                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="p-3.5 flex items-center justify-between bg-zinc-50/50 dark:bg-[#121215]/50 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="font-mono font-semibold text-zinc-800 dark:text-zinc-200">perforaciones-web</span>
+              <span class="text-zinc-500 hidden sm:inline">&mdash; Sitio web comercial para servicios industriales</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-[11px] text-zinc-400">TypeScript / React</span>
+              <a href="https://github.com/NoPueo1/perforaciones-web" target="_blank" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white" aria-label="Repositorio perforaciones-web">
+                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="p-3.5 flex items-center justify-between bg-zinc-50/50 dark:bg-[#121215]/50 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="font-mono font-semibold text-zinc-800 dark:text-zinc-200">Prototipo-El-Mirador</span>
+              <span class="text-zinc-500 hidden sm:inline">&mdash; Prototipo de interfaz de usuario moderna</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-[11px] text-zinc-400">TypeScript / Tailwind</span>
+              <a href="https://github.com/NoPueo1/Prototipo-El-Mirador" target="_blank" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-white" aria-label="Repositorio Prototipo-El-Mirador">
+                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 3. STACK TÉCNICO & COMPETENCIAS                                           -->
+    <!-- ========================================================================= -->
+    <section id="stack" class="scroll-mt-24 space-y-6">
+      
+      <div class="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+          Stack Técnico &amp; Competencias
+        </h2>
+        <span class="text-xs font-mono text-zinc-400">
+          Herramientas &amp; Tecnologías
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Categoría 1: Backend & Microservicios -->
+        <div class="surface-card p-5 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 border-b border-zinc-100 dark:border-zinc-800/80 pb-2.5">
+            <svg class="w-4 h-4 text-emerald-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+            <span>Backend &amp; Microservicios</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill-highlight">Java</span>
+            <span class="tech-pill-highlight">Spring Boot 3</span>
+            <span class="tech-pill-highlight">Microservicios</span>
+            <span class="tech-pill-highlight">Spring Cloud Gateway</span>
+            <span class="tech-pill-highlight">OpenFeign</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">APIs RESTful</span>
+            <span class="tech-pill">JPA / Hibernate</span>
+            <span class="tech-pill">JUnit 5 &amp; Mockito</span>
+            <span class="tech-pill">Maven</span>
+          </div>
+        </div>
+
+        <!-- Categoría 2: Bases de Datos & Persistencia -->
+        <div class="surface-card p-5 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 border-b border-zinc-100 dark:border-zinc-800/80 pb-2.5">
+            <svg class="w-4 h-4 text-sky-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+            <span>Bases de Datos &amp; Persistencia</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill-highlight">MySQL</span>
+            <span class="tech-pill-highlight">Oracle (PL/SQL)</span>
+            <span class="tech-pill-highlight">Database-per-Service</span>
+            <span class="tech-pill">Modelado MER / DER</span>
+            <span class="tech-pill">Transacciones ACID</span>
+            <span class="tech-pill">Normalización (1FN-3FN)</span>
+            <span class="tech-pill">SQL ANSI</span>
+            <span class="tech-pill">Triggers &amp; Stored Procedures</span>
+          </div>
+        </div>
+
+        <!-- Categoría 3: Frontend & UI Web -->
+        <div class="surface-card p-5 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 border-b border-zinc-100 dark:border-zinc-800/80 pb-2.5">
+            <svg class="w-4 h-4 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <span>Frontend &amp; UI Web</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill-highlight">Next.js 15</span>
+            <span class="tech-pill-highlight">TypeScript</span>
+            <span class="tech-pill-highlight">Tailwind CSS</span>
+            <span class="tech-pill">Bootstrap</span>
+            <span class="tech-pill">JavaScript ES6+</span>
+            <span class="tech-pill">Framer Motion</span>
+            <span class="tech-pill">HTML5 Semántico</span>
+            <span class="tech-pill">CSS3 Moderno</span>
+            <span class="tech-pill">Web Audio API</span>
+          </div>
+        </div>
+
+        <!-- Categoría 4: Herramientas, Metodologías & DevOps -->
+        <div class="surface-card p-5 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 border-b border-zinc-100 dark:border-zinc-800/80 pb-2.5">
+            <svg class="w-4 h-4 text-purple-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+            <span>Herramientas &amp; Métodos</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-pill-highlight">Git &amp; GitHub</span>
+            <span class="tech-pill-highlight">Scrum (SFC Certified)</span>
+            <span class="tech-pill">Postman / Thunder Client</span>
+            <span class="tech-pill">Vercel Deployments</span>
+            <span class="tech-pill">Principios SOLID</span>
+            <span class="tech-pill">Clean Code</span>
+            <span class="tech-pill">Patrones de Diseño</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 4. TRAYECTORIA, FORMACIÓN & CERTIFICACIONES (ORDEN CRONOLÓGICO EXACTO)    -->
+    <!-- ========================================================================= -->
+    <section id="trayectoria" class="scroll-mt-24 space-y-6">
+      
+      <div class="flex items-baseline justify-between border-b border-zinc-200 dark:border-zinc-800 pb-3">
+        <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+          Trayectoria &amp; Formación
+        </h2>
+        <span class="text-xs font-mono text-zinc-400">
+          Educación &amp; Certificaciones
+        </span>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- 1. Ingeniería en Informática (Marzo 2025 — 2029) -->
+        <div class="surface-card p-5 sm:p-7 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2029</span>
+                <span class="text-xs text-zinc-400">&bull;</span>
+                <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
+                Ingeniería en Informática
+              </h3>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 shrink-0">Educación Superior Profesional (4 Años)</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Formación profesional de 8 semestres centrada en arquitectura y desarrollo de software, ecosistemas en microservicios con Java y Spring Boot, modelado relacional en MySQL y Oracle PL/SQL, principios SOLID, patrones de diseño y metodologías ágiles.
+          </p>
+        </div>
+
+        <!-- 2. Analista Programador Computacional (Marzo 2025 — 2027) -->
+        <div class="surface-card p-5 sm:p-7 space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2027</span>
+                <span class="text-xs text-zinc-400">&bull;</span>
+                <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
+                Analista Programador Computacional
+              </h3>
+              <p class="text-xs font-mono text-emerald-500 dark:text-emerald-400 font-semibold">
+                Salida Intermedia &bull; Titulación 5° Semestre (2027)
+              </p>
+            </div>
+            <span class="text-xs font-mono text-zinc-400 shrink-0">Título Técnico de Nivel Superior</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Ciclo formativo técnico con salida intermedia al 5° semestre. Enfocado en desarrollo de aplicaciones orientadas a objetos, lógica algorítmica de negocio, programación backend, interfaces web e integración con bases de datos relacionales.
+          </p>
+        </div>
+
+        <!-- 3. Certificación Scrum (Diciembre 2025) -->
+        <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="space-y-1 max-w-xl">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-amber-600 dark:text-amber-400 font-medium">Diciembre 2025</span>
+              <span class="text-xs text-zinc-400">&bull;</span>
+              <span class="text-xs font-mono text-zinc-500">SCRUMstudy</span>
+            </div>
+            <h3 class="text-base font-bold text-zinc-900 dark:text-white">
+              Scrum Fundamentals Certified (SFC)
+            </h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
+              Certificación oficial en el marco de trabajo ágil Scrum: gestión iterativa, entregas de valor continuo, estimación de historias de usuario y optimización de flujos de trabajo en equipo.
+            </p>
+          </div>
+          <div class="shrink-0 flex items-center gap-2">
+            <button id="copy-cert-btn" type="button" class="btn-glass text-xs font-mono py-1.5 px-3" title="Copiar ID de certificación">
+              <svg class="w-3.5 h-3.5 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>ID: 1128172</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Bootcamp Talento Digital (19 Mayo 2026 — 17 Septiembre 2026) -->
+        <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+          <div class="space-y-1 max-w-xl">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">19 Mayo 2026 &mdash; 17 Septiembre 2026</span>
+              <span class="text-xs text-zinc-400">&bull;</span>
+              <span class="text-xs font-mono text-zinc-500">Talento Digital / SENCE</span>
+            </div>
+            <h3 class="text-base font-bold text-zinc-900 dark:text-white">
+              Bootcamp Full Stack Java Trainee
+            </h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
+              Especialización intensiva en desarrollo backend con Java y Spring Boot, creación de APIs RESTful, persistencia relacional con JPA/Hibernate y microservicios.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-zinc-400 shrink-0">Bootcamp Intensivo</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 5. CONTACTO & PIE DE PÁGINA                                               -->
+    <!-- ========================================================================= -->
+    <section id="contacto" class="scroll-mt-24 surface-card p-6 sm:p-10 space-y-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div class="space-y-2">
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Iniciemos una conversación
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xl">
+            Disponible para evaluar oportunidades laborales en desarrollo de software, backend con Java / Spring Boot o proyectos web. Si buscas incorporar a tu equipo a un desarrollador con base formal de ingeniería y experiencia práctica, conversemos.
+          </p>
+        </div>
+        
+        <!-- Emblema Oficial VasKas Systems (Con zoom aplicado) -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-black border border-zinc-200 dark:border-zinc-800 shadow-xl shrink-0 self-start sm:self-center flex items-center justify-center">
+          <img 
+            src="assets/images/vaskas_logo.png" 
+            alt="VasKas Logo" 
+            width="96" 
+            height="96" 
+            loading="lazy" 
+            decoding="async"
+            class="w-full h-full object-cover scale-[1.55] transition-transform duration-300" 
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
+        <a href="mailto:agusvasquez23z@gmail.com?subject=Contacto%20desde%20Portafolio%20Web" class="btn-solid-glass">
+          <svg class="w-3.5 h-3.5 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>agusvasquez23z@gmail.com</span>
+        </a>
+
+        <button id="footer-copy-email" type="button" class="btn-glass font-mono text-xs">
+          <svg class="w-3.5 h-3.5 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span>Copiar Email</span>
+        </button>
+
+        <a href="https://www.instagram.com/vaskas.systems" target="_blank" rel="noopener noreferrer" class="btn-glass" aria-label="Instagram">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#insta-grad-f)" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="4" stroke="url(#insta-grad-f)" stroke-width="2.2"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="#e1306c"/>
+            <defs>
+              <linearGradient id="insta-grad-f" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f09433"/>
+                <stop offset="0.25" stop-color="#e6683c"/>
+                <stop offset="0.5" border-color="#dc2743"/>
+                <stop offset="0.75" stop-color="#cc2366"/>
+                <stop offset="1" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span>Instagram</span>
+          <svg class="w-3 h-3 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+
+        <a href="https://www.linkedin.com/in/agustin-vasquez-ti/" target="_blank" rel="noopener noreferrer" class="btn-glass" aria-label="LinkedIn">
+          <svg class="w-3.5 h-3.5 text-[#0a66c2]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          <span>LinkedIn</span>
+          <svg class="w-3 h-3 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+
+        <a href="https://github.com/NoPueo1" target="_blank" rel="noopener noreferrer" class="btn-glass" aria-label="GitHub">
+          <svg class="w-3.5 h-3.5 text-zinc-800 dark:text-zinc-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          <span>GitHub</span>
+          <svg class="w-3 h-3 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>
+
+      <div class="pt-6 border-t border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-400 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>© 2026 Agustín Vásquez &mdash; VasKas Systems</span>
+        <span>Concepción, Chile</span>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: ARQUITECTURA DE MICROSERVICIOS                                     -->
+  <!-- ========================================================================= -->
+  <div id="arch-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity">
+    <div class="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto surface-card p-6 sm:p-8 space-y-6 shadow-2xl">
+      
+      <div class="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4">
+        <div>
+          <h3 class="text-base font-bold text-zinc-900 dark:text-white">Arquitectura del Ecosistema de Microservicios</h3>
+          <p class="text-xs font-mono text-zinc-500">sistema-cotizacion-microservicios (11 Módulos)</p>
+        </div>
+        <button id="close-arch-modal" type="button" class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-3 font-mono text-xs">
+        
+        <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
+          <div class="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span class="text-emerald-500">ms-gateway (Puerto 8090)</span>
+          </div>
+          <p class="text-xs text-zinc-500 font-sans">Reverse Proxy y enrutamiento centralizado bajo Spring Cloud Gateway. Administra el tráfico sin exponer puertos individuales.</p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
+          <div class="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span class="text-purple-400">ms-cotizador / ms-itemcotizador</span>
+          </div>
+          <p class="text-xs text-zinc-500 font-sans">Módulo nuclear de cotizaciones. Consume síncronamente los servicios de stock y clientes a través de clientes declarativos OpenFeign.</p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
+          <div class="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span class="text-blue-400">ms-stock / ms-equipo / ms-categoria</span>
+          </div>
+          <p class="text-xs text-zinc-500 font-sans">Control de inventario, stock disponible y catálogo técnico de equipos con esquemas de base de datos aislados.</p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
+          <div class="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
+            <span class="text-amber-400">ms-facturacion / ms-notificacion / ms-proveedor</span>
+          </div>
+          <p class="text-xs text-zinc-500 font-sans">Emisión de documentos tributarios, gestión de proveedores y despacho de alertas asíncronas.</p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
+          <div class="font-bold text-rose-400">10 Esquemas MySQL (Database-per-Service)</span>
+          </div>
+          <p class="text-xs text-zinc-500 font-sans">Aislamiento estricto de esquemas: categoria_db, cliente_db, cotizador_db, equipo_db, facturacion_db, itemcotizador_db, notificacion_db, proveedor_db, stock_db, usuario_db.</p>
+        </div>
+
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <a href="https://github.com/NoPueo1/sistema-cotizacion-microservicios" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 flex items-center gap-1">
+          <span>Ver repositorio en GitHub</span>
+          <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+        <button id="close-arch-modal-btn" type="button" class="btn-solid-glass text-xs py-1.5 px-3">
+          Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notificación Toast Minimalista -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 pointer-events-none transition-all duration-200 flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-xs font-mono shadow-lg border border-zinc-800 dark:border-zinc-200">
+    <svg class="w-3.5 h-3.5 text-emerald-400 dark:text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toast-msg">Copiado al portapapeles</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
