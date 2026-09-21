@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agustín Vásquez — VasKas Systems | Desarrollador de Software</title>
 
-  <!-- VasKas Systems • Desarrollador de Software -->
   <!-- Detección Nativa de Tema (iOS iPhone, Android, Windows, Mac) -->
   <script>
     (function() {
@@ -205,7 +204,7 @@
                 <linearGradient id="insta-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#f09433"/>
                   <stop offset="0.25" stop-color="#e6683c"/>
-                  <stop offset="0.5" border-color="#dc2743"/>
+                  <stop offset="0.5" stop-color="#dc2743"/>
                   <stop offset="0.75" stop-color="#cc2366"/>
                   <stop offset="1" stop-color="#bc1888"/>
                 </linearGradient>
@@ -731,7 +730,7 @@
 
 
     <!-- ========================================================================= -->
-    <!-- 4. TRAYECTORIA, FORMACIÓN & CERTIFICACIONES (ORDEN CRONOLÓGICO EXACTO)    -->
+    <!-- 4. TRAYECTORIA, FORMACIÓN & CERTIFICACIONES (LÍNEA DE TIEMPO CLEAN)      -->
     <!-- ========================================================================= -->
     <section id="trayectoria" class="scroll-mt-24 space-y-6">
       
@@ -744,92 +743,113 @@
         </span>
       </div>
 
-      <div class="space-y-4">
+      <!-- Contenedor Timeline con Hilo Conector Vertical -->
+      <div class="relative border-l border-zinc-200 dark:border-zinc-800/80 ml-3 sm:ml-4 pl-6 sm:pl-8 space-y-6">
 
         <!-- 1. Ingeniería en Informática (Marzo 2025 — 2029) -->
-        <div class="surface-card p-5 sm:p-7 space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2029</span>
-                <span class="text-xs text-zinc-400">&bull;</span>
-                <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
-              </div>
-              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
-                Ingeniería en Informática
-              </h3>
-            </div>
-            <span class="text-xs font-mono text-zinc-400 shrink-0">Educación Superior Profesional (4 Años)</span>
-          </div>
+        <div class="relative group">
+          <!-- Nodo de la Línea de Tiempo -->
+          <div class="absolute -left-[30px] sm:-left-[38px] top-6 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-[#09090b] shadow-sm"></div>
 
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Formación profesional de 8 semestres centrada en arquitectura y desarrollo de software, ecosistemas en microservicios con Java y Spring Boot, modelado relacional en MySQL y Oracle PL/SQL, principios SOLID, patrones de diseño y metodologías ágiles.
-          </p>
+          <div class="surface-card p-5 sm:p-7 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2029</span>
+                  <span class="text-xs text-zinc-400">&bull;</span>
+                  <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
+                </div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
+                  Ingeniería en Informática
+                </h3>
+              </div>
+              <span class="text-xs font-mono text-zinc-400 shrink-0">Educación Superior Profesional (4 Años)</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Formación profesional de 8 semestres centrada en arquitectura y desarrollo de software, ecosistemas en microservicios con Java y Spring Boot, modelado relacional en MySQL y Oracle PL/SQL, principios SOLID, patrones de diseño y metodologías ágiles.
+            </p>
+          </div>
         </div>
 
         <!-- 2. Analista Programador Computacional (Marzo 2025 — 2027) -->
-        <div class="surface-card p-5 sm:p-7 space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2027</span>
-                <span class="text-xs text-zinc-400">&bull;</span>
-                <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
-              </div>
-              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
-                Analista Programador Computacional
-              </h3>
-              <p class="text-xs font-mono text-emerald-500 dark:text-emerald-400 font-semibold">
-                Salida Intermedia &bull; Titulación 5° Semestre (2027)
-              </p>
-            </div>
-            <span class="text-xs font-mono text-zinc-400 shrink-0">Título Técnico de Nivel Superior</span>
-          </div>
+        <div class="relative group">
+          <!-- Nodo de la Línea de Tiempo -->
+          <div class="absolute -left-[30px] sm:-left-[38px] top-6 w-3 h-3 rounded-full bg-zinc-400 dark:bg-zinc-600 border-2 border-white dark:border-[#09090b] group-hover:bg-emerald-500 transition-colors"></div>
 
-          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Ciclo formativo técnico con salida intermedia al 5° semestre. Enfocado en desarrollo de aplicaciones orientadas a objetos, lógica algorítmica de negocio, programación backend, interfaces web e integración con bases de datos relacionales.
-          </p>
+          <div class="surface-card p-5 sm:p-7 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800/60 pb-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Marzo 2025 &mdash; 2027</span>
+                  <span class="text-xs text-zinc-400">&bull;</span>
+                  <span class="text-xs font-mono text-zinc-500">Duoc UC Sede San Andrés</span>
+                </div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
+                  Analista Programador Computacional
+                </h3>
+                <p class="text-xs font-mono text-emerald-500 dark:text-emerald-400 font-semibold">
+                  Salida Intermedia &bull; Titulación 5° Semestre (2027)
+                </p>
+              </div>
+              <span class="text-xs font-mono text-zinc-400 shrink-0">Título Técnico de Nivel Superior</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Ciclo formativo técnico con salida intermedia al 5° semestre. Enfocado en desarrollo de aplicaciones orientadas a objetos, lógica algorítmica de negocio, programación backend, interfaces web e integración con bases de datos relacionales.
+            </p>
+          </div>
         </div>
 
         <!-- 3. Certificación Scrum (Diciembre 2025) -->
-        <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          <div class="space-y-1 max-w-xl">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono text-amber-600 dark:text-amber-400 font-medium">Diciembre 2025</span>
-              <span class="text-xs text-zinc-400">&bull;</span>
-              <span class="text-xs font-mono text-zinc-500">SCRUMstudy</span>
+        <div class="relative group">
+          <!-- Nodo de la Línea de Tiempo -->
+          <div class="absolute -left-[30px] sm:-left-[38px] top-6 w-3 h-3 rounded-full bg-zinc-400 dark:bg-zinc-600 border-2 border-white dark:border-[#09090b] group-hover:bg-amber-500 transition-colors"></div>
+
+          <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-1 max-w-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono text-amber-600 dark:text-amber-400 font-medium">Diciembre 2025</span>
+                <span class="text-xs text-zinc-400">&bull;</span>
+                <span class="text-xs font-mono text-zinc-500">SCRUMstudy</span>
+              </div>
+              <h3 class="text-base font-bold text-zinc-900 dark:text-white">
+                Scrum Fundamentals Certified (SFC)
+              </h3>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
+                Certificación oficial en el marco de trabajo ágil Scrum: gestión iterativa, entregas de valor continuo, estimación de historias de usuario y optimización de flujos de trabajo en equipo.
+              </p>
             </div>
-            <h3 class="text-base font-bold text-zinc-900 dark:text-white">
-              Scrum Fundamentals Certified (SFC)
-            </h3>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
-              Certificación oficial en el marco de trabajo ágil Scrum: gestión iterativa, entregas de valor continuo, estimación de historias de usuario y optimización de flujos de trabajo en equipo.
-            </p>
-          </div>
-          <div class="shrink-0 flex items-center gap-2">
-            <button id="copy-cert-btn" type="button" class="btn-glass text-xs font-mono py-1.5 px-3" title="Copiar ID de certificación">
-              <svg class="w-3.5 h-3.5 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              <span>ID: 1128172</span>
-            </button>
+            <div class="shrink-0 flex items-center gap-2">
+              <button id="copy-cert-btn" type="button" class="btn-glass text-xs font-mono py-1.5 px-3" title="Copiar ID de certificación">
+                <svg class="w-3.5 h-3.5 text-zinc-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span>ID: 1128172</span>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- 4. Bootcamp Talento Digital (19 Mayo 2026 — 17 Septiembre 2026) -->
-        <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          <div class="space-y-1 max-w-xl">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">19 Mayo 2026 &mdash; 17 Septiembre 2026</span>
-              <span class="text-xs text-zinc-400">&bull;</span>
-              <span class="text-xs font-mono text-zinc-500">Talento Digital / SENCE</span>
+        <div class="relative group">
+          <!-- Nodo de la Línea de Tiempo -->
+          <div class="absolute -left-[30px] sm:-left-[38px] top-6 w-3 h-3 rounded-full bg-zinc-400 dark:bg-zinc-600 border-2 border-white dark:border-[#09090b] group-hover:bg-blue-500 transition-colors"></div>
+
+          <div class="surface-card p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="space-y-1 max-w-xl">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">19 Mayo 2026 &mdash; 17 Septiembre 2026</span>
+                <span class="text-xs text-zinc-400">&bull;</span>
+                <span class="text-xs font-mono text-zinc-500">Talento Digital / SENCE</span>
+              </div>
+              <h3 class="text-base font-bold text-zinc-900 dark:text-white">
+                Bootcamp Full Stack Java Trainee
+              </h3>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
+                Especialización intensiva en desarrollo backend con Java y Spring Boot, creación de APIs RESTful, persistencia relacional con JPA/Hibernate y microservicios.
+              </p>
             </div>
-            <h3 class="text-base font-bold text-zinc-900 dark:text-white">
-              Bootcamp Full Stack Java Trainee
-            </h3>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed pt-1">
-              Especialización intensiva en desarrollo backend con Java y Spring Boot, creación de APIs RESTful, persistencia relacional con JPA/Hibernate y microservicios.
-            </p>
+            <span class="text-xs font-mono text-zinc-400 shrink-0">Bootcamp Intensivo</span>
           </div>
-          <span class="text-xs font-mono text-zinc-400 shrink-0">Bootcamp Intensivo</span>
         </div>
 
       </div>
@@ -886,7 +906,7 @@
               <linearGradient id="insta-grad-f" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#f09433"/>
                 <stop offset="0.25" stop-color="#e6683c"/>
-                <stop offset="0.5" border-color="#dc2743"/>
+                <stop offset="0.5" stop-color="#dc2743"/>
                 <stop offset="0.75" stop-color="#cc2366"/>
                 <stop offset="1" stop-color="#bc1888"/>
               </linearGradient>
@@ -958,14 +978,12 @@
         </div>
 
         <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
-          <div class="font-bold text-amber-400">ms-facturacion / ms-notificacion / ms-proveedor</span>
-          </div>
+          <div class="font-bold text-amber-400">ms-facturacion / ms-notificacion / ms-proveedor</div>
           <p class="text-xs text-zinc-500 font-sans">Emisión de documentos tributarios, gestión de proveedores y despacho de alertas asíncronas.</p>
         </div>
 
         <div class="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 space-y-1">
-          <div class="font-bold text-rose-400">10 Esquemas MySQL (Database-per-Service)</span>
-          </div>
+          <div class="font-bold text-rose-400">10 Esquemas MySQL (Database-per-Service)</div>
           <p class="text-xs text-zinc-500 font-sans">Aislamiento estricto de esquemas: categoria_db, cliente_db, cotizador_db, equipo_db, facturacion_db, itemcotizador_db, notificacion_db, proveedor_db, stock_db, usuario_db.</p>
         </div>
 
